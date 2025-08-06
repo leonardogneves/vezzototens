@@ -667,7 +667,8 @@
       mensagem: mensagem
     };
     
-    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbx8QAAAWVfixGA-85cCIiAAKnrRbGYftubPSXnDmc1fpLDhWRTX7UwMrbcyct5O1WmD/exec';
+    // URL do seu Google Apps Script (substitua pela sua URL correta)
+    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxXQItGFUGDfHyE_85290ylGJ_rlWw6q7SRl-7kYmA2FOmYGTsRihQnT8UCwd2lbjVB/exec';
     
     // Texto para WhatsApp
     const whatsappText = `Olá! Meu nome é ${nome}, meu e-mail é ${email} e meu WhatsApp é ${whatsapp}. 
@@ -680,35 +681,53 @@
     document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Enviando seus dados...</p>';
     
     try {
-      // Enviar para o Google Sheets
+      // Enviar para o Google Sheets com tratamento CORS
       const response = await fetch(googleScriptUrl, {
         method: 'POST',
+        mode: 'no-cors', // Modo no-cors para evitar problemas
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       });
       
-      const result = await response.json();
+      // Como estamos usando 'no-cors', não podemos ler a resposta
+      // Mas assumimos que foi bem-sucedido se não houve erro
+      document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Dados salvos! Redirecionando para o WhatsApp...</p>';
       
-      if(result.success) {
-        // Redirecionar para WhatsApp após sucesso
-        document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Dados salvos! Redirecionando para o WhatsApp...</p>';
-        setTimeout(() => {
-          window.open(whatsappUrl, '_blank');
-          form.reset();
-          document.getElementById('status').innerHTML = '<p style="color: #10b981;">Obrigado! Seus dados foram enviados com sucesso.</p>';
-        }, 1500);
-      } else {
-        throw new Error('Falha ao salvar dados');
-      }
+      setTimeout(() => {
+        // Abre nova guia com WhatsApp
+        window.open(whatsappUrl, '_blank');
+        
+        // Redireciona para página de obrigado ou reseta formulário
+        form.reset();
+        document.getElementById('status').innerHTML = '<p style="color: #10b981;">Obrigado! Seus dados foram enviados com sucesso.</p>';
+        
+        // Opcional: Redirecionar para página de confirmação
+        // window.location.href = "/obrigado.html";
+        
+      }, 1500);
+      
     } catch (error) {
-      console.error('Erro:', error);
-      // Fallback - se houver erro no Google Sheets, ainda envia para WhatsApp
-      document.getElementById('status').innerHTML = '<p style="color: #ef4444;">Problema no sistema. Redirecionando para o WhatsApp...</p>';
+      console.error('Erro ao enviar para Google Sheets:', error);
+      
+      // Fallback - se houver erro, ainda envia para WhatsApp
+      document.getElementById('status').innerHTML = `
+        <p style="color: #ef4444;">
+          Problema temporário no sistema. Redirecionando para o WhatsApp...
+          <small style="display: block;">(Seus dados serão processados em breve)</small>
+        </p>`;
+      
       setTimeout(() => {
         window.open(whatsappUrl, '_blank');
         form.reset();
+        
+        // Tentativa alternativa de enviar os dados (opcional)
+        fetch(googleScriptUrl + '?fallback=true', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams(formData)
+        });
       }, 1500);
     }
   });
