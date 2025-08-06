@@ -601,52 +601,119 @@
     </div>
   </section>
 
-  <!-- Form Section -->
-  <section class="section" id="orcamento">
-    <div class="container">
-      <h2 class="section-title">Solicite um orçamento personalizado</h2>
-      <p class="section-subtitle">Preencha o formulário e entraremos em contato em até 24 horas com uma proposta para seu negócio</p>
-      
-      <div class="form-wrapper">
-        <form class="form" id="leadForm">
-          <div class="form-group">
-            <label for="nome" class="form-label">Nome completo</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
-          </div>
-          
-          <div class="form-group">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="seu@email.com" required />
-          </div>
-          
-          <div class="form-group">
-            <label for="whatsapp" class="form-label">WhatsApp</label>
-            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required />
-          </div>
-          
-          <div class="form-group">
-            <label for="negocio" class="form-label">Tipo de Negócio</label>
-            <select id="negocio" name="negocio" required>
-              <option value="">Selecione...</option>
-              <option value="restaurante">Restaurante/Lanchonete</option>
-              <option value="varejo">Varejo/Supermercado</option>
-              <option value="servicos">Serviços</option>
-              <option value="saude">Saúde/Academia</option>
-              <option value="outro">Outro</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="mensagem" class="form-label">Descreva sua necessidade</label>
-            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Quantos totens precisa? Precisa de integração com algum sistema? Alguma funcionalidade especial?" required></textarea>
-          </div>
-          
-          <button type="submit" class="btn">Enviar Solicitação</button>
-          <div id="status" style="text-align: center; margin-top: 15px;"></div>
-        </form>
-      </div>
+  <!-- Formulario -->
+<section class="section" id="orcamento">
+  <div class="container">
+    <h2 class="section-title">Solicite um orçamento personalizado</h2>
+    <p class="section-subtitle">Preencha o formulário e entraremos em contato em até 24 horas com uma proposta para seu negócio</p>
+    
+    <div class="form-wrapper">
+      <form class="form" id="leadForm">
+        <div class="form-group">
+          <label for="nome" class="form-label">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="whatsapp" class="form-label">WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="negocio" class="form-label">Tipo de Negócio</label>
+          <select id="negocio" name="negocio" required>
+            <option value="">Selecione...</option>
+            <option value="restaurante">Restaurante/Lanchonete</option>
+            <option value="varejo">Varejo/Supermercado</option>
+            <option value="servicos">Serviços</option>
+            <option value="saude">Saúde/Academia</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="mensagem" class="form-label">Descreva sua necessidade</label>
+          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Quantos totens precisa? Precisa de integração com algum sistema? Alguma funcionalidade especial?" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Enviar Solicitação</button>
+        <div id="status" style="text-align: center; margin-top: 15px;"></div>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
+
+<script>
+  document.getElementById('leadForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const form = e.target;
+    const nome = form.nome.value.trim();
+    const email = form.email.value.trim();
+    const whatsapp = form.whatsapp.value.trim();
+    const negocio = form.negocio.value;
+    const mensagem = form.mensagem.value.trim();
+    
+    // Dados para o Google Sheets
+    const formData = {
+      nome: nome,
+      email: email,
+      whatsapp: whatsapp,
+      negocio: negocio,
+      mensagem: mensagem
+    };
+    
+    // URL do seu Google Apps Script (substitua pela sua URL)
+    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbx8QAAAWVfixGA-85cCIiAAKnrRbGYftubPSXnDmc1fpLDhWRTX7UwMrbcyct5O1WmD/exec';
+    
+    // Texto para WhatsApp
+    const whatsappText = `Olá! Meu nome é ${nome}, meu e-mail é ${email} e meu WhatsApp é ${whatsapp}. 
+    Tenho um negócio do tipo: ${negocio}.
+    Estou interessado nos totens Vezzo. Detalhes: ${mensagem}`;
+    
+    const whatsappUrl = `https://wa.me/5551997588099?text=${encodeURIComponent(whatsappText)}`;
+    
+    // Mostrar status de carregamento
+    document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Enviando seus dados...</p>';
+    
+    try {
+      // Enviar para o Google Sheets
+      const response = await fetch(googleScriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if(result.success) {
+        // Redirecionar para WhatsApp após sucesso
+        document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Dados salvos! Redirecionando para o WhatsApp...</p>';
+        setTimeout(() => {
+          window.open(whatsappUrl, '_blank');
+          form.reset();
+          document.getElementById('status').innerHTML = '<p style="color: #10b981;">Obrigado! Seus dados foram enviados com sucesso.</p>';
+        }, 1500);
+      } else {
+        throw new Error('Falha ao salvar dados');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      // Fallback - se houver erro no Google Sheets, ainda envia para WhatsApp
+      document.getElementById('status').innerHTML = '<p style="color: #ef4444;">Problema no sistema. Redirecionando para o WhatsApp...</p>';
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+        form.reset();
+      }, 1500);
+    }
+  });
+</script>
 
   <!-- Footer -->
   <footer>
