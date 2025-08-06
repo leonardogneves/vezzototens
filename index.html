@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Vezzo Totens - Autoatendimento e Publicidade</title>
+  <meta name="description" content="Totens de autoatendimento, autopagamento e publicidade. Peça seu orçamento direto no WhatsApp.">
+  <style>
+    /* CSS completo aqui (resumido para facilitar leitura) */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:sans-serif;background:#f4f7fc;color:#1f2d3a;line-height:1.4;}
+    .btn{background:#6366f1;color:#fff;border:none;padding:12px 22px;border-radius:6px;cursor:pointer;font-weight:600;}
+    .hero{padding:100px 20px;text-align:center;background:linear-gradient(135deg,#6366f1 0%,#a78bfa 80%);color:#fff;}
+    .form-wrapper{background:#fff;padding:28px;max-width:640px;margin:auto;border-radius:12px;box-shadow:0 25px 80px -10px rgba(0,0,0,0.1);}
+    .form{display:flex;flex-direction:column;gap:12px;}
+    .form input, .form textarea{padding:12px;border:1px solid #ccc;border-radius:6px;}
+    .carousel{position:relative;overflow:hidden;border-radius:12px;max-width:1000px;margin:auto;}
+    .carousel-track{display:flex;transition:transform .4s ease;}
+    .carousel-slide{min-width:100%;}
+    .carousel-slide img{width:100%;display:block;}
+    .carousel-btn{background:rgba(0,0,0,.4);color:#fff;border:none;padding:10px 14px;border-radius:50%;cursor:pointer;}
+    .dot{width:12px;height:12px;border-radius:50%;background:#d1d5db;cursor:pointer;}
+    .dot.active{background:#6366f1;}
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1>Totens de Autoatendimento e Publicidade</h1>
+    <p>Reduza filas, aumente conversões e monetize com publicidade enquanto o cliente interage.</p>
+    <a href="#orcamento" class="btn">Pedir Orçamento</a>
+  </section>
+
+  <section class="carousel" id="galeria">
+    <div class="carousel-track" id="track">
+      <div class="carousel-slide"><img src="https://via.placeholder.com/1200x600?text=Toten+1" alt="Toten 1"></div>
+      <div class="carousel-slide"><img src="https://via.placeholder.com/1200x600?text=Toten+2" alt="Toten 2"></div>
+      <div class="carousel-slide"><img src="https://via.placeholder.com/1200x600?text=Toten+3" alt="Toten 3"></div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="prev">&lt;</button>
+      <button class="carousel-btn" id="next">&gt;</button>
+    </div>
+    <div style="text-align:center;margin-top:10px;" id="dots"></div>
+  </section>
+
+  <section class="form-wrapper" id="orcamento">
+    <h2>Solicite um orçamento</h2>
+    <form class="form" id="leadForm">
+      <input type="text" name="nome" placeholder="Nome completo" required />
+      <input type="email" name="email" placeholder="E-mail" required />
+      <input type="tel" name="whatsapp" placeholder="WhatsApp" required />
+      <textarea name="mensagem" rows="5" placeholder="Descreva sua necessidade" required></textarea>
+      <button type="submit" class="btn">Enviar</button>
+      <div id="status"></div>
+    </form>
+  </section>
+
+  <script>
+    // Carousel
+    (function(){
+      const track = document.getElementById('track');
+      const slides = Array.from(track.children);
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const dotsContainer = document.getElementById('dots');
+      let index = 0;
+
+      function update() {
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        Array.from(dotsContainer.children).forEach((d,i)=> d.classList.toggle('active', i===index));
+      }
+
+      slides.forEach((_, i)=>{
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i===0 ? ' active' : '');
+        dot.style.display = 'inline-block';
+        dot.style.margin = '0 4px';
+        dot.addEventListener('click', ()=>{ index=i; update(); });
+        dotsContainer.appendChild(dot);
+      });
+
+      prev.addEventListener('click', ()=>{ index = (index -1 + slides.length) % slides.length; update(); });
+      next.addEventListener('click', ()=>{ index = (index +1) % slides.length; update(); });
+      setInterval(()=>{ index = (index +1) % slides.length; update(); }, 5000);
+    })();
+
+    // Form -> WhatsApp
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const form = e.target;
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const whatsapp = form.whatsapp.value.trim();
+      const mensagem = form.mensagem.value.trim();
+      const texto = `Olá! Meu nome é ${nome}, meu e-mail é ${email} e meu WhatsApp é ${whatsapp}. Tenho interesse nos totens. Detalhes: ${mensagem}`;
+      const url = `https://wa.me/5551997588099?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+      document.getElementById('status').textContent = 'Redirecionando para o WhatsApp...';
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
