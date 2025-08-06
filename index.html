@@ -172,6 +172,36 @@
       padding: 8px 16px;
     }
   }
+
+      .mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-menu-button {
+      display: block;
+    }
+    
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: white;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .nav-links.active {
+      display: flex;
+    }
+  }
     
     /* Hero Section */
     .hero {
@@ -742,6 +772,19 @@
 </section>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.createElement('button');
+    menuButton.className = 'mobile-menu-button';
+    menuButton.innerHTML = '☰';
+    
+    const nav = document.querySelector('.nav-links');
+    menuButton.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+    
+    document.querySelector('.header-container').appendChild(menuButton);
+  });
+  
   document.getElementById('leadForm').addEventListener('submit', async function(e){
     e.preventDefault();
     const form = e.target;
