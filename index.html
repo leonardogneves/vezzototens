@@ -4,6 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vezzo Totens — Autoatendimento Inteligente</title>
+
+  <!-- Meta Tags para Favicon e Compartilhamento de Link (OG/Twitter) -->
+  <!-- URL da Logo usada como imagem de pré-visualização e ícone da aba -->
+  <?php $logoUrl = "https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png"; ?>
+  
+  <!-- Favicon para a aba do navegador -->
+  <link rel="icon" href="<?php echo $logoUrl; ?>" type="image/png">
+  
+  <!-- Open Graph Meta Tags (Para Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:title" content="Totem Vezzo: Economize até R$ 9.000 por Mês e Otimize seu Negócio" />
+  <meta property="og:description" content="Reduza custos com até 3 funcionários e aumente o faturamento com o totem de autoatendimento mais eficiente do mercado." />
+  <meta property="og:image" content="<?php echo $logoUrl; ?>" />
+  <meta property="og:url" content="https://landingpage.com.br/" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Twitter Card Meta Tags (Para X/Twitter) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Totem Vezzo: Autoatendimento Inteligente" />
+  <meta name="twitter:description" content="Substitua 3 funcionários e comece a economizar R$ 9.000/mês agora." />
+  <meta name="twitter:image" content="<?php echo $logoUrl; ?>" />
+  
   <style>
     body {
       margin: 0;
@@ -432,7 +453,6 @@
     // Configura o Intersection Observer
     document.addEventListener('DOMContentLoaded', () => {
         // CORREÇÃO PARA MOBILE: Ajustando o threshold para 0.1 (10% de visibilidade)
-        // Isso garante que a animação dispare mais facilmente em telas menores.
         const options = {
             root: null, // viewport
             rootMargin: '0px',
