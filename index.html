@@ -79,6 +79,72 @@
       background: #111;
       text-align: center;
     }
+    
+    /* --- Estilos para a seção de Aceitação (Gráficos ajustados) --- */
+    .customer-acceptance {
+        padding: 90px 40px;
+        background: #0f0f12;
+        color: white;
+        text-align: center;
+    }
+    .customer-acceptance .chart-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px; 
+        flex-wrap: wrap;
+        max-width: 1000px; 
+        margin: auto;
+        align-items: flex-end;
+    }
+    .customer-acceptance .chart-item {
+        flex: 1 1 280px; /* Permite 3 colunas em telas maiores (~280px de largura base) */
+        min-height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        background: #1d1d22;
+        padding: 20px 15px;
+        border-radius: 14px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    .chart-bar-area {
+      height: 200px; /* Área fixa para as barras de Aceitação */
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .chart-bar {
+      width: 70px;
+      border-radius: 8px 8px 0 0;
+      /* Inicializa a altura da barra para 0 para a animação */
+      height: 0; 
+      transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação suave */
+    }
+
+    /* Estilos para as barras de Economia Real */
+    .cost-chart-bar-area {
+        height: 280px; /* Área fixa para as barras de Custo */
+        display:flex; 
+        align-items:flex-end; 
+        justify-content:center;
+    }
+    .cost-chart-bar {
+        width:80px; 
+        border-radius:8px; 
+        /* Inicializa a altura da barra para 0 para a animação */
+        height: 0; 
+        transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .chart-value {
+      font-size: 32px;
+      font-weight: 900;
+      margin: 0 0 10px;
+    }
+    
     /* Estilos responsivos */
     @media (max-width: 900px) {
         .hero {
@@ -104,13 +170,23 @@
         .saving-calc {
              padding: 60px 20px !important;
         }
+        /* Ajuste para o layout dos gráficos de aceitação em mobile */
+        .customer-acceptance .chart-container {
+            gap: 40px;
+        }
+        .customer-acceptance .chart-item {
+            flex-basis: 100%; /* Ocupa largura total no mobile */
+            max-width: 350px; /* Garante que o item não seja gigante */
+            margin: auto;
+        }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="https://i.postimg.cc/BZFKWXF6/Screenshot-9.png" alt="Vezzo Logo" />
+  <!-- Logotipo substituída pela nova URL -->
+  <img src="https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png" alt="Vezzo Logo" />
 </header>
 
 <section class="hero">
@@ -124,9 +200,10 @@
   </div>
 </section>
 
-<section class="value-prop" style="text-align:center; padding:90px 40px; background:#111;">
+<!-- Seção Economia Mensal (Agora com data-section e ID para animação de número) -->
+<section class="value-prop" data-section="monthly-savings" style="text-align:center; padding:90px 40px; background:#111;">
   <h2 style="font-size:48px; margin-bottom:25px; font-weight:800; line-height:1.2;">
-    Economize até <span style="color:#3b82f6; font-size:62px; font-weight:900; text-shadow:0 0 25px rgba(59,130,246,0.5);">R$ 9.000</span> por mês
+    Economize até <span id="monthly-savings-value" data-target="9000" style="color:#3b82f6; font-size:62px; font-weight:900; text-shadow:0 0 25px rgba(59,130,246,0.5);">R$ 0</span> por mês
   </h2>
   <p style="font-size:22px; opacity:0.92; max-width:900px; margin:auto; line-height:1.6;">
     O Totem da Vezzo automatiza todo o atendimento inicial: recebe pagamentos, envia pedidos diretamente para cozinha e copa, organiza mesas e elimina filas — reduzindo custos significativos com caixa, atendentes e garçons.
@@ -134,22 +211,23 @@
 </section>
 
 <!-- Seção Gráfico de Economia a Longo Prazo -->
-<section class="longterm-savings" style="padding:90px 40px; background:#0f0f12; color:white; text-align:center;">
+<section class="longterm-savings" data-section="longterm-savings" style="padding:90px 40px; background:#0f0f12; color:white; text-align:center;">
   <h2 style="font-size:40px; margin-bottom:20px; font-weight:700;">Economia Real no Longo Prazo</h2>
   <p style="max-width:900px; margin:auto; font-size:20px; opacity:0.9; margin-bottom:60px;">
     Funcionários geram custos contínuos: salário, encargos, férias, INSS, possíveis problemas trabalhistas e afastamentos. 
     Já o Totem Vezzo funciona 24h por dia, sem riscos e sem custos extras — garantindo economia previsível todos os meses.
   </p>
 
-  <!-- Gráfico de Economia: Mantido sem o vídeo -->
+  <!-- Gráfico de Economia: Barras de custo com classes de animação -->
   <div style="display:flex; justify-content:center; gap:60px; flex-wrap:wrap; max-width:1000px; margin:auto;">
 
     <!-- Funcionários -->
     <div style="width:420px; max-width:100%; text-align:center;">
       <h3 style="font-size:22px; margin-bottom:15px;">Custo de 3 Funcionários (12 meses)</h3>
       <div style="background:#1d1d22; padding:25px; border-radius:14px;">
-        <div style="height:280px; display:flex; align-items:flex-end; justify-content:center;">
-          <div style="width:80px; height:260px; background:#ef4444; border-radius:8px; box-shadow:0 0 20px rgba(239,68,68,0.4);"></div>
+        <div class="cost-chart-bar-area">
+          <!-- height-target-value: 260px -->
+          <div class="cost-chart-bar" data-target-height="260" style="background:#ef4444; box-shadow:0 0 20px rgba(239,68,68,0.4);"></div>
         </div>
         <p style="margin-top:20px; font-size:20px; font-weight:700; color:#ef4444;">R$ 108.000 / ano</p>
       </div>
@@ -159,8 +237,9 @@
     <div style="width:420px; max-width:100%; text-align:center;">
       <h3 style="font-size:22px; margin-bottom:15px;">Custo do Totem (12 meses)</h3>
       <div style="background:#1d1d22; padding:25px; border-radius:14px;">
-        <div style="height:280px; display:flex; align-items:flex-end; justify-content:center;">
-          <div style="width:80px; height:55px; background:#3b82f6; border-radius:8px; box-shadow:0 0 20px rgba(59,130,246,0.4);"></div>
+        <div class="cost-chart-bar-area">
+          <!-- height-target-value: 55px -->
+          <div class="cost-chart-bar" data-target-height="55" style="background:#3b82f6; box-shadow:0 0 20px rgba(59,130,246,0.4);"></div>
         </div>
         <p style="margin-top:20px; font-size:20px; font-weight:700; color:#3b82f6;">R$ 7.188 / ano*</p>
       </div>
@@ -233,9 +312,150 @@
   </p>
 </section>
 
+<!-- Seção Aceitação do Cliente (Novo formato de barras) -->
+<section class="customer-acceptance" data-section="customer-acceptance">
+    <!-- Título abreviado conforme solicitado -->
+    <h2 style="font-size: 40px; margin-bottom: 20px; font-weight: 700;">Aceitação</h2>
+    <p style="max-width: 900px; margin: auto; font-size: 20px; opacity: 0.9; margin-bottom: 60px;">
+        Seu cliente quer agilidade e controle. Invista no Totem Vezzo e observe as métricas de sucesso que garantem satisfação e lucro, eliminando qualquer receio de modernização.
+    </p>
+
+    <div class="chart-container">
+
+        <!-- 1. Preferência Imediata (90%) -->
+        <div class="chart-item">
+            <div class="chart-bar-area">
+                <!-- data-target-height: 90% da área (200px * 0.9 = 180px) -->
+                <div class="chart-bar" data-target-height="180" style="background: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.4);"></div>
+            </div>
+            <p class="chart-value" style="color: #3b82f6;">90%</p>
+            <h3 style="font-size: 22px; margin-bottom: 5px;">Preferência Pelo Totem</h3>
+            <p style="font-size: 16px; opacity: 0.85;">Clientes preferem a autonomia e a rapidez do autoatendimento ao invés da fila de caixa.</p>
+        </div>
+
+        <!-- 2. Aumento no Valor do Pedido (+30%) -->
+        <div class="chart-item">
+            <div class="chart-bar-area">
+                <!-- data-target-height: 30% da área (200px * 0.3 = 60px) -->
+                <div class="chart-bar" data-target-height="60" style="background: #059669; box-shadow: 0 0 20px rgba(5,150,105,0.4);"></div>
+            </div>
+            <p class="chart-value" style="color: #059669;">+30%</p>
+            <h3 style="font-size: 22px; margin-bottom: 5px;">Aumento no Valor do Pedido</h3>
+            <p style="font-size: 16px; opacity: 0.85;">O cliente gasta mais ao visualizar o cardápio com fotos e poder adicionar itens extras com calma.</p>
+        </div>
+
+        <!-- 3. Agilidade no Atendimento (40%) -->
+        <div class="chart-item">
+            <div class="chart-bar-area">
+                <!-- data-target-height: 40% da área (200px * 0.4 = 80px) -->
+                <div class="chart-bar" data-target-height="80" style="background: #06b6d4; box-shadow: 0 0 20px rgba(6,182,212,0.4);"></div>
+            </div>
+            <p class="chart-value" style="color: #06b6d4;">40%</p>
+            <h3 style="font-size: 22px; margin-bottom: 5px;">Agilidade no Atendimento</h3>
+            <p style="font-size: 16px; opacity: 0.85;">Redução comprovada no tempo de espera do cliente, aumentando a capacidade de processamento de pedidos.</p>
+        </div>
+
+    </div>
+    
+    <p style="font-size: 14px; margin-top: 50px; opacity: 0.6; text-align: center;">
+        *Dados simulados baseados em Relatórios Globais de FoodTech e Pesquisa Anual do Setor QSR (Quick Service Restaurant).
+    </p>
+
+</section>
+
 <footer>
   © 2025 Vezzo Totens — Autoatendimento Inteligente
 </footer>
 
+<script>
+    // Função principal para animar as barras e o valor
+    function animateBars(entries, observer) {
+        entries.forEach(entry => {
+            // Verifica se a seção está visível na tela
+            if (entry.isIntersecting) {
+                const section = entry.target;
+                
+                // Animação para a seção de Economia Mensal (Contagem de Número)
+                if (section.dataset.section === 'monthly-savings') {
+                    const targetElement = section.querySelector('#monthly-savings-value');
+                    const targetValue = parseInt(targetElement.getAttribute('data-target'));
+                    
+                    const duration = 1500; // 1.5 segundos
+                    const startTime = performance.now();
+
+                    function countUp(currentTime) {
+                        const elapsedTime = currentTime - startTime;
+                        // Usa Math.min(1, ...) para garantir que o progresso não passe de 1
+                        const progress = Math.min(1, elapsedTime / duration);
+                        
+                        // O valor atual arredondado para garantir que a contagem seja suave
+                        const currentValue = Math.round(progress * targetValue);
+                        
+                        // Formata o número para o padrão brasileiro (R$ X.XXX)
+                        targetElement.innerHTML = `R$ ${currentValue.toLocaleString('pt-BR')}`;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(countUp);
+                        } else {
+                            // Garante que o valor final seja exatamente o alvo e formatado corretamente
+                            targetElement.innerHTML = `R$ ${targetValue.toLocaleString('pt-BR')}`;
+                        }
+                    }
+
+                    requestAnimationFrame(countUp);
+                } 
+                
+                // Animação para a seção de Economia Real (Gráficos de Custo)
+                else if (section.dataset.section === 'longterm-savings') {
+                    section.querySelectorAll('.cost-chart-bar').forEach(bar => {
+                        const targetHeight = bar.getAttribute('data-target-height');
+                        // Aplica o estilo de altura final para iniciar a transição CSS
+                        bar.style.height = `${targetHeight}px`;
+                    });
+                } 
+                
+                // Animação para a seção de Aceitação (Gráficos de Porcentagem)
+                else if (section.dataset.section === 'customer-acceptance') {
+                    section.querySelectorAll('.chart-bar').forEach(bar => {
+                        const targetHeight = bar.getAttribute('data-target-height');
+                        // Aplica o estilo de altura final para iniciar a transição CSS
+                        bar.style.height = `${targetHeight}px`;
+                    });
+                }
+
+                // Para de observar esta seção para que a animação não se repita
+                observer.unobserve(section);
+            }
+        });
+    }
+
+    // Configura o Intersection Observer
+    document.addEventListener('DOMContentLoaded', () => {
+        // Opções: a animação será acionada quando 50% da seção estiver visível
+        const options = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.5 
+        };
+
+        const observer = new IntersectionObserver(animateBars, options);
+
+        // Observa as três seções
+        const monthlySavingsSection = document.querySelector('.value-prop');
+        const longtermSavingsSection = document.querySelector('.longterm-savings');
+        const customerAcceptanceSection = document.querySelector('.customer-acceptance');
+
+        if (monthlySavingsSection) {
+            observer.observe(monthlySavingsSection);
+        }
+        if (longtermSavingsSection) {
+            observer.observe(longtermSavingsSection);
+        }
+        if (customerAcceptanceSection) {
+            observer.observe(customerAcceptanceSection);
+        }
+    });
+
+</script>
 </body>
 </html>
