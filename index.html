@@ -1,1001 +1,323 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Vezzo Totens - Autoatendimento e Publicidade Digital</title>
-  <meta name="description" content="Totens de autoatendimento, autopagamento e publicidade digital. Soluções completas para seu negócio. Peça seu orçamento direto no WhatsApp.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary: #a78bfa;
-      --dark: #1f2d3a;
-      --light: #f4f7fc;
-      --gray: #e5e7eb;
-      --dark-gray: #6b7280;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .btn {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      display: inline-block;
-      text-decoration: none;
-    }
-    
-    .btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-    
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-    
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
-    }
-    
-    .section {
-      padding: 80px 0;
-    }
-    
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: var(--dark);
-      position: relative;
-    }
-    
-    .section-title:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      margin: 15px auto 0;
-      border-radius: 2px;
-    }
-    
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--dark-gray);
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 50px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vezzo Totens — Autoatendimento Inteligente</title>
 
-      /* Estilos para o cabeçalho */
-  .header {
-    background: white;
-    padding: 20px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .logo {
-    height: 50px;
-    width: auto;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo:hover {
-    transform: scale(1.05);
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 30px;
-  }
-  
-  .nav-link {
-    color: var(--dark);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: var(--primary);
-  }
-  
-  .cta-button {
-    background: var(--primary);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-  }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0d;
+  color: white;
+}
 
-  @media (max-width: 768px) {
-    .logo {
-      height: 40px;
-    }
-    
-    .nav-links {
-      gap: 15px;
-    }
-    
-    .cta-button {
-      padding: 8px 16px;
-    }
-  }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #0f0f12;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #222;
+}
+header img { height: 65px; }
 
-      .mobile-menu-button {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    .mobile-menu-button {
-      display: block;
-    }
-    
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 80px;
-      left: 0;
-      right: 0;
-      background: white;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    }
-    
-    .nav-links.active {
-      display: flex;
-    }
-  }
-    
-    /* Hero Section */
-    .hero {
-      padding: 120px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 80%);
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.9;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    /* Features Section */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-    
-    .feature-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    }
-    
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      color: white;
-      font-size: 24px;
-    }
-    
-    .feature-title {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      color: var(--dark);
-    }
-    
-    .feature-text {
-      color: var(--dark-gray);
-    }
-    
-    /* Carousel Section */
-    .carousel-section {
-      background: #fff;
-      padding: 80px 0;
-    }
-    
-    .carousel-container {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-    }
-    
-    .carousel-track {
-      display: flex;
-      transition: transform .5s ease;
-    }
-    
-    .carousel-slide {
-      min-width: 100%;
-      position: relative;
-      text-align: center;
-      justify-content: center;
-      display: flex;
-    }
-    
-    .carousel-slide img {
-      width: auto;
-      display: block;
-      height: 89%;
-      object-fit: contain;
-    }
-    
-    .carousel-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    
-    .carousel-nav {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      padding: 0 15px;
-      z-index: 10;
-    }
-    
-    .carousel-btn {
-      background: rgba(255,255,255,0.8);
-      color: var(--primary);
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
-    .carousel-btn:hover {
-      background: white;
-      transform: scale(1.1);
-    }
-    
-    .carousel-dots {
-      text-align: center;
-      margin-top: 20px;
-    }
-    
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--gray);
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-    }
-    
-    .dot.active {
-      background: var(--primary);
-      transform: scale(1.2);
-    }
-    
-    /* Form Section */
-    .form-wrapper {
-      background: #fff;
-      padding: 40px;
-      max-width: 640px;
-      margin: 0 auto;
-      border-radius: 16px;
-      box-shadow: 0 25px 80px -10px rgba(0,0,0,0.1);
-    }
-    
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .form-label {
-      font-weight: 500;
-      color: var(--dark);
-    }
-    
-    .form input,
-    .form textarea,
-    .form select {
-      padding: 14px;
-      border: 1px solid var(--gray);
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-    
-    .form input:focus,
-    .form textarea:focus,
-    .form select:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-    
-    .form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    
-    /* Testimonials */
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-    
-    .testimonial-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-    
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 20px;
-      color: var(--dark);
-    }
-    
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .author-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    
-    .author-info h4 {
-      margin-bottom: 5px;
-      color: var(--dark);
-    }
-    
-    .author-info p {
-      color: var(--dark-gray);
-      font-size: 14px;
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 60px 0 30px;
-      text-align: center;
-    }
-    
-    .footer-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .footer-logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: white;
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .footer-link {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-link:hover {
-      color: white;
-    }
-    
-    .footer-social {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    
-    .social-icon:hover {
-      background: var(--primary);
-      transform: translateY(-3px);
-    }
-    
-    .copyright {
-      color: rgba(255,255,255,0.6);
-      font-size: 14px;
-      margin-top: 30px;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .form-wrapper {
-        padding: 30px 20px;
-      }
-    }
-  </style>
+.hero {
+  display: flex;
+  padding: 80px 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-text { max-width: 600px; }
+.hero h1 {
+  font-size: 52px;
+  margin: 0 0 20px;
+  font-weight: 700;
+  color: #fff;
+}
+.hero p {
+  font-size: 20px;
+  opacity: 0.8;
+}
+.hero-img img {
+  height: 500px;
+  filter: drop-shadow(0px 0px 30px rgba(255,255,255,0.4));
+}
+.cta-button {
+  background: #3b82f6;
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.value-prop {
+  padding: 70px 40px;
+  background: #111;
+  text-align: center;
+}
+.value-prop h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+.value-prop p {
+  font-size: 22px;
+  opacity: 0.9;
+  max-width: 900px;
+  margin: auto;
+}
+
+.saving-calc {
+  padding: 70px 40px;
+  background: #16161a;
+}
+
+.saving-calc h2 { font-size: 38px; }
+.saving-calc p { font-size: 20px; opacity: 0.85; }
+
+/* ESTILO PARA A NOVA SEÇÃO (Aceitação do Público) */
+.beneficio {
+  margin: 40px auto;
+  padding: 60px 40px;
+  border-radius: 12px;
+  background: #0f0f12;
+  max-width: 1200px;
+  border: 1px solid #1d1d22;
+  color: white;
+}
+
+.titulo-beneficio {
+  font-size: 40px;
+  margin-bottom: 20px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.descricao-beneficio {
+  font-size: 18px;
+  margin-bottom: 40px;
+  text-align: center;
+  opacity: 0.85;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.graficos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.grafico-card {
+  background: #1a1a1f;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #2a2a30;
+  box-shadow: 0 0 15px rgba(255,255,255,0.04);
+}
+
+.grafico-titulo {
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.barra {
+  width: 100%;
+  height: 18px;
+  background: #2c2c33;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.preenchimento {
+  height: 18px;
+  background: #3b82f6;
+  border-radius: 10px;
+  box-shadow: 0 0 18px rgba(59,130,246,0.4);
+}
+
+.valor {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 5px;
+  opacity: 0.9;
+  color: #3b82f6;
+}
+footer {
+  background: #0f0f12;
+  text-align: center;
+  padding: 30px;
+  margin-top: 40px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+</style>
 </head>
+
 <body>
 
-  <header class="header">
-    <div class="header-container">
-      <a href="#">
-        <img src="https://i.postimg.cc/Lsjwg57y/Logo-vetor-VEZZO.png" alt="Vezzo Totens" class="logo">
-      </a>
-    
-      <nav class="nav-links">
-        <a href="#galeria" class="nav-link">Modelos</a>
-        <a href="#diferenciais" class="nav-link">Diferenciais</a>
-        <a href="#depoimentos" class="nav-link">Clientes</a>
-        <a href="#orcamento" class="nav-link cta-button">Orçamento</a>
-      </nav>
-    </div>
-  </header>
+<header>
+  <img src="https://i.postimg.cc/BZFKWXF6/Screenshot-9.png" alt="Vezzo Logo" />
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Totens de Autoatendimento e Publicidade Digital</h1>
-      <p>Reduza filas, aumente conversões e monetize com publicidade enquanto o cliente interage com seu negócio.</p>
-      <div class="hero-buttons">
-        <a href="#orcamento" class="btn">Pedir Orçamento</a>
-        <a href="#galeria" class="btn btn-outline">Ver Modelos</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Por que escolher nossos totens?</h2>
-      <p class="section-subtitle">Soluções completas que transformam a experiência do seu cliente e aumentam sua receita</p>
-      
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3 class="feature-title">Autoatendimento Intuitivo</h3>
-          <p class="feature-text">Interface amigável que permite aos clientes realizar pedidos e pagamentos de forma rápida e independente.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3 class="feature-title">Monetização com Publicidade</h3>
-          <p class="feature-text">Gere receita adicional exibindo anúncios relevantes durante o tempo de interação do cliente.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3 class="feature-title">Relatórios em Tempo Real</h3>
-          <p class="feature-text">Acompanhe métricas de uso, vendas e desempenho de anúncios através do nosso painel de controle.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Carousel Section -->
-  <section class="carousel-section" id="galeria">
-    <div class="container">
-      <h2 class="section-title">Nossos Modelos de Totens</h2>
-      <p class="section-subtitle">Conheça nossas soluções personalizáveis para diferentes necessidades de negócios</p>
-    </div>
-    
-    <div class="carousel-container">
-      <div class="carousel">
-        <div class="carousel-track" id="track">
-          <div class="carousel-slide">
-            <img src="https://i.postimg.cc/NFP1P1CG/Imagem-do-Whats-App-de-2025-07-21-s-17-56-55-fb1214b6-2.png" alt="Totem Vezzo - Modelo Premium">
-            <div class="carousel-caption">
-              <h3>Totem Vezzo Standard</h3>
-              <p>Solução econômica com tela 22" FHD e todas as funcionalidades essenciais</p>
-            </div>
-          </div>
-          <div class="carousel-slide">
-            <img src="https://via.placeholder.com/1200x600?text=Toten+Standard" alt="Totem Vezzo - Modelo Standard">
-            <div class="carousel-caption">
-              <h3>Totem Vezzo Premium</h3>
-              <p>Tela 23.8" Full HD, leitor de cartões, impressora térmica e sistema operacional dedicado</p>
-            </div>
-          </div>
-          <div class="carousel-slide">
-            <img src="https://via.placeholder.com/1200x600?text=Toten+Publicitário" alt="Totem Vezzo - Modelo Publicitário">
-            <div class="carousel-caption">
-              <h3>Totem Publicitário</h3>
-              <p>Foco em exibição de conteúdo com tela 4K ("43, 50, 60, 70) e sistema de gestão de mídia</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="carousel-nav">
-          <button class="carousel-btn" id="prev">❮</button>
-          <button class="carousel-btn" id="next">❯</button>
-        </div>
-      </div>
-      
-      <div class="carousel-dots" id="dots"></div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="section" style="background: var(--light);">
-    <div class="container">
-      <h2 class="section-title">O que nossos clientes dizem</h2>
-      <p class="section-subtitle">Depoimentos de negócios que transformaram sua operação com nossos totens</p>
-      
-      <div class="testimonials">
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Os totens da Vezzo reduziram nosso tempo de atendimento em 40% e ainda geram receita com publicidade. Melhor investimento que fizemos!"</p>
-          <div class="testimonial-author">
-            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Maria Silva" class="author-avatar">
-            <div class="author-info">
-              <h4>Maria Silva</h4>
-              <p>Dona da Rede FastFood</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Desde que instalamos os totens, nossos clientes elogiam a facilidade de uso e nós reduzimos custos com funcionários. Totalmente personalizável!"</p>
-          <div class="testimonial-author">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Oliveira" class="author-avatar">
-            <div class="author-info">
-              <h4>Carlos Oliveira</h4>
-              <p>Gerente do Supermercado BomPreço</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial-card">
-          <p class="testimonial-text">"O suporte da Vezzo é excepcional. Nos ajudaram em tudo, desde a instalação até a configuração dos anúncios. Sistema muito estável e intuitivo."</p>
-          <div class="testimonial-author">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Costa" class="author-avatar">
-            <div class="author-info">
-              <h4>Ana Costa</h4>
-              <p>Diretora da Academia FitLife</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Formulario -->
-<section class="section" id="orcamento">
-  <div class="container">
-    <h2 class="section-title">Solicite um orçamento personalizado</h2>
-    <p class="section-subtitle">Preencha o formulário e entraremos em contato em até 24 horas com uma proposta para seu negócio</p>
-    
-    <div class="form-wrapper">
-      <form class="form" id="leadForm">
-        <div class="form-group">
-          <label for="nome" class="form-label">Nome completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
-        </div>
-        
-        <div class="form-group">
-          <label for="email" class="form-label">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="seu@email.com" required />
-        </div>
-        
-        <div class="form-group">
-          <label for="whatsapp" class="form-label">WhatsApp</label>
-          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required />
-        </div>
-        
-        <div class="form-group">
-          <label for="negocio" class="form-label">Tipo de Negócio</label>
-          <select id="negocio" name="negocio" required>
-            <option value="">Selecione...</option>
-            <option value="restaurante">Restaurante/Lanchonete</option>
-            <option value="varejo">Varejo/Supermercado</option>
-            <option value="servicos">Serviços</option>
-            <option value="saude">Saúde/Academia</option>
-            <option value="outro">Outro</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="mensagem" class="form-label">Descreva sua necessidade</label>
-          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Quantos totens precisa? Precisa de integração com algum sistema? Alguma funcionalidade especial?" required></textarea>
-        </div>
-        
-        <button type="submit" class="btn">Enviar Solicitação</button>
-        <div id="status" style="text-align: center; margin-top: 15px;"></div>
-      </form>
-    </div>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Totem de Autoatendimento Vezzo</h1>
+    <p>Reduza custos, agilize pedidos e aumente o faturamento do seu negócio com um sistema completo que substitui até <strong>3 funcionários</strong> — caixa, garçom e atendimento inicial.</p>
+    <a class="cta-button" href="#contato">Quero economizar agora</a>
+  </div>
+  <div class="hero-img">
+    <img src="https://i.postimg.cc/tCHV9pdm/TOTEM-1.png" alt="Totem Vezzo" />
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuButton = document.createElement('button');
-    menuButton.className = 'mobile-menu-button';
-    menuButton.innerHTML = '☰';
-    
-    const nav = document.querySelector('.nav-links');
-    menuButton.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-    
-    document.querySelector('.header-container').appendChild(menuButton);
-  });
-  
-  document.getElementById('leadForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-    const form = e.target;
-    const nome = form.nome.value.trim();
-    const email = form.email.value.trim();
-    const whatsapp = form.whatsapp.value.trim();
-    const negocio = form.negocio.value;
-    const mensagem = form.mensagem.value.trim();
-    
-    // Dados para o Google Sheets
-    const formData = {
-      nome: nome,
-      email: email,
-      whatsapp: whatsapp,
-      negocio: negocio,
-      mensagem: mensagem
-    };
-    
-    // URL do seu Google Apps Script (substitua pela sua URL correta)
-    const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxXQItGFUGDfHyE_85290ylGJ_rlWw6q7SRl-7kYmA2FOmYGTsRihQnT8UCwd2lbjVB/exec';
-    
-    // Texto para WhatsApp
-    const whatsappText = `Olá! Meu nome é ${nome}, meu e-mail é ${email} e meu WhatsApp é ${whatsapp}. 
-    Tenho um negócio do tipo: ${negocio}.
-    Estou interessado nos totens Vezzo. Detalhes: ${mensagem}`;
-    
-    const whatsappUrl = `https://wa.me/5551997588099?text=${encodeURIComponent(whatsappText)}`;
-    
-    // Mostrar status de carregamento
-    document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Enviando seus dados...</p>';
-    
-    try {
-      // Enviar para o Google Sheets com tratamento CORS
-      const response = await fetch(googleScriptUrl, {
-        method: 'POST',
-        mode: 'no-cors', // Modo no-cors para evitar problemas
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      // Como estamos usando 'no-cors', não podemos ler a resposta
-      // Mas assumimos que foi bem-sucedido se não houve erro
-      document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Dados salvos! Redirecionando para o WhatsApp...</p>';
-      
-      setTimeout(() => {
-        // Abre nova guia com WhatsApp
-        window.open(whatsappUrl, '_blank');
-        
-        // Redireciona para página de obrigado ou reseta formulário
-        form.reset();
-        document.getElementById('status').innerHTML = '<p style="color: #10b981;">Obrigado! Seus dados foram enviados com sucesso.</p>';
-        
-        // Opcional: Redirecionar para página de confirmação
-        // window.location.href = "/obrigado.html";
-        
-      }, 1500);
-      
-    } catch (error) {
-      console.error('Erro ao enviar para Google Sheets:', error);
-      
-      // Fallback - se houver erro, ainda envia para WhatsApp
-      document.getElementById('status').innerHTML = `
-        <p style="color: #ef4444;">
-          Problema temporário no sistema. Redirecionando para o WhatsApp...
-          <small style="display: block;">(Seus dados serão processados em breve)</small>
-        </p>`;
-      
-      setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-        form.reset();
-        
-        // Tentativa alternativa de enviar os dados (opcional)
-        fetch(googleScriptUrl + '?fallback=true', {
-          method: 'POST',
-          mode: 'no-cors',
-          body: new URLSearchParams(formData)
-        });
-      }, 1500);
-    }
-  });
-</script>
+<section class="value-prop" style="text-align:center; padding:90px 40px; background:#111;">
+  <h2 style="font-size:48px; margin-bottom:25px; font-weight:800; line-height:1.2;">
+    Economize até <span style="color:#3b82f6; font-size:62px; font-weight:900; text-shadow:0 0 25px rgba(59,130,246,0.5);">R$ 9.000</span> por mês
+  </h2>
+  <p style="font-size:22px; opacity:0.92; max-width:900px; margin:auto; line-height:1.6;">
+    O Totem da Vezzo automatiza todo o atendimento inicial: recebe pagamentos, envia pedidos diretamente para cozinha e copa, organiza mesas e elimina filas — reduzindo custos significativos com caixa, atendentes e garçons.
+  </p>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">VEZZO TOTENS</div>
-      <div class="footer-links">
-        <a href="#galeria" class="footer-link">Modelos</a>
-        <a href="#orcamento" class="footer-link">Orçamento</a>
-        <a href="#" class="footer-link">Sobre Nós</a>
-        <a href="#" class="footer-link">FAQ</a>
-        <a href="#" class="footer-link">Contato</a>
+<!-- ECONOMIA A LONGO PRAZO -->
+<section class="longterm-savings" style="padding:90px 40px; background:#0f0f12; color:white; text-align:center;">
+  <h2 style="font-size:40px; margin-bottom:20px; font-weight:700;">Economia Real no Longo Prazo</h2>
+  <p style="max-width:900px; margin:auto; font-size:20px; opacity:0.9; margin-bottom:60px;">
+    Funcionários geram custos contínuos: salário, encargos, férias, INSS, possíveis problemas trabalhistas e afastamentos. Já o Totem Vezzo funciona 24h por dia, sem riscos e sem custos extras — garantindo economia previsível todos os meses.
+  </p>
+
+  <div style="display:flex; justify-content:center; gap:60px; flex-wrap:wrap; max-width:1000px; margin:auto;">
+    <!-- Funcionários -->
+    <div style="width:420px; text-align:center;">
+      <h3 style="font-size:22px; margin-bottom:15px;">Custo de 3 Funcionários (12 meses)</h3>
+      <div style="background:#1d1d22; padding:25px; border-radius:14px;">
+        <div style="height:280px; display:flex; align-items:flex-end; justify-content:center;">
+          <div style="width:80px; height:260px; background:#ef4444; border-radius:8px; box-shadow:0 0 20px rgba(239,68,68,0.4);"></div>
+        </div>
+        <p style="margin-top:20px; font-size:20px; font-weight:700; color:#ef4444;">R$ 108.000 / ano</p>
       </div>
-      
-      <div class="footer-social">
-        <a href="#" class="social-icon">📱</a>
-        <a href="#" class="social-icon">📷</a>
-        <a href="#" class="social-icon">🔗</a>
-        <a href="#" class="social-icon">🎥</a>
-      </div>
-      
-      <p class="copyright">© 2025 Vezzo Totens. Todos os direitos reservados.</p>
     </div>
-  </footer>
 
-  <script>
-    // Carousel
-    (function(){
-      const track = document.getElementById('track');
-      const slides = Array.from(track.children);
-      const prev = document.getElementById('prev');
-      const next = document.getElementById('next');
-      const dotsContainer = document.getElementById('dots');
-      let index = 0;
-      let autoSlideInterval;
+    <!-- Totem -->
+    <div style="width:420px; text-align:center;">
+      <h3 style="font-size:22px; margin-bottom:15px;">Custo do Totem (12 meses)</h3>
+      <div style="background:#1d1d22; padding:25px; border-radius:14px;">
+        <div style="height:280px; display:flex; align-items:flex-end; justify-content:center;">
+          <div style="width:80px; height:55px; background:#3b82f6; border-radius:8px; box-shadow:0 0 20px rgba(59,130,246,0.4);"></div>
+        </div>
+        <p style="margin-top:20px; font-size:20px; font-weight:700; color:#3b82f6;">R$ 7.188 / ano*</p>
+      </div>
+    </div>
+  </div>
 
-      function update() {
-        track.style.transform = 'translateX(' + (-index * 100) + '%)';
-        Array.from(dotsContainer.children).forEach((d,i) => {
-          d.classList.toggle('active', i === index);
-        });
-      }
+  <p style="font-size:16px; margin-top:25px; opacity:0.7;">*Valor baseado em mensalidade média.</p>
 
-      function createDots() {
-        slides.forEach((_, i) => {
-          const dot = document.createElement('div');
-          dot.className = 'dot' + (i === 0 ? ' active' : '');
-          dot.addEventListener('click', () => {
-            index = i;
-            update();
-            resetAutoSlide();
-          });
-          dotsContainer.appendChild(dot);
-        });
-      }
+  <h3 style="margin-top:50px; font-size:30px; font-weight:800; color:#3b82f6; text-shadow:0 0 20px rgba(59,130,246,0.6);">
+    Economia estimada: R$ 100.812 por ano
+  </h3>
+</section>
 
-      function startAutoSlide() {
-        autoSlideInterval = setInterval(() => {
-          index = (index + 1) % slides.length;
-          update();
-        }, 5000);
-      }
+<!-- NOVA SEÇÃO — ACEITAÇÃO DO PÚBLICO -->
+<section class="beneficio">
+  <h2 class="titulo-beneficio">Aceitação do Público</h2>
 
-      function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        startAutoSlide();
-      }
+  <p class="descricao-beneficio">
+    Muitos empresários têm dúvida se os clientes vão aderir ao autoatendimento — mas os números no Brasil já mostram o contrário.
+    O público gosta de rapidez, autonomia e tecnologia. Totens já se tornaram padrão em grandes redes e estão dominando também os pequenos negócios.
+  </p>
 
-      createDots();
-      startAutoSlide();
+  <div class="graficos-container">
+    <div class="grafico-card">
+      <h3 class="grafico-titulo">Preferência por atendimento rápido e autônomo</h3>
+      <div class="barra"><div class="preenchimento" style="width: 85%;"></div></div>
+      <p class="valor">85% dos consumidores</p>
+    </div>
 
-      prev.addEventListener('click', () => {
-        index = (index - 1 + slides.length) % slides.length;
-        update();
-        resetAutoSlide();
-      });
+    <div class="grafico-card">
+      <h3 class="grafico-titulo">Aumento na fidelização após implantar totens</h3>
+      <div class="barra"><div class="preenchimento" style="width: 40%;"></div></div>
+      <p class="valor">Até 40% a mais</p>
+    </div>
 
-      next.addEventListener('click', () => {
-        index = (index + 1) % slides.length;
-        update();
-        resetAutoSlide();
-      });
+    <div class="grafico-card">
+      <h3 class="grafico-titulo">Vendas via totens em fast-food (Brasil)</h3>
+      <div class="barra"><div class="preenchimento" style="width: 70%;"></div></div>
+      <p class="valor">+70% no horário de pico</p>
+    </div>
+  </div>
 
-      // Pause on hover
-      const carousel = document.querySelector('.carousel');
-      carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoSlideInterval);
-      });
+  <p class="descricao-beneficio">
+    Esses números comprovam: o autoatendimento não é só aceito — ele é desejado.
+    A tendência é clara: **clientes modernos preferem tecnologia**.
+    E quem adota primeiro, fideliza mais cedo e se destaca no mercado.
+  </p>
+</section>
 
-      carousel.addEventListener('mouseleave', () => {
-        startAutoSlide();
-      });
-    })();
+<!-- VIDEO -->
+<section class="video-demo" style="padding:80px 40px; text-align:center; background:#0d0d0d;">
+  <h2 style="font-size:36px; margin-bottom:25px;">Veja o Totem em Funcionamento</h2>
+  <p style="opacity:.85; margin-bottom:40px; max-width:800px; margin:auto; font-size:20px;">
+    Assista ao vídeo real mostrando como o Totem Vezzo funciona na prática: recebendo pedidos, pagamentos, enviando para cozinha e agilizando todo o atendimento.
+  </p>
 
-    // Form -> WhatsApp
-    document.getElementById('leadForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const form = e.target;
-      const nome = form.nome.value.trim();
-      const email = form.email.value.trim();
-      const whatsapp = form.whatsapp.value.trim();
-      const negocio = form.negocio.value;
-      const mensagem = form.mensagem.value.trim();
-      
-      const texto = `Olá! Meu nome é ${nome}, meu e-mail é ${email} e meu WhatsApp é ${whatsapp}. 
-      Tenho um negócio do tipo: ${negocio}.
-      Estou interessado nos totens Vezzo. Detalhes: ${mensagem}`;
-      
-      const url = `https://wa.me/5551997588099?text=${encodeURIComponent(texto)}`;
-      
-      document.getElementById('status').innerHTML = '<p style="color: var(--primary);">Redirecionando para o WhatsApp...</p>';
-      
-      setTimeout(() => {
-        window.open(url, '_blank');
-        form.reset();
-        document.getElementById('status').innerHTML = '<p style="color: #10b981;">Mensagem enviada com sucesso! Entraremos em contato em breve.</p>';
-      }, 1000);
-    });
+  <video controls style="width:85%; max-width:900px; border-radius:14px; border:2px solid #222; box-shadow:0 0 35px rgba(255,255,255,0.22);">
+    <source src="Video 1 Vezzo.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos.
+  </video>
+</section>
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
+<section class="saving-calc" style="padding:90px 40px; background:#16161a;">
+  <h2 style="font-size:40px; margin-bottom:40px; text-align:center; font-weight:700;">
+    Como o Totem substitui 3 funcionários
+  </h2>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <div style="display:flex; gap:40px; justify-content:center; flex-wrap:wrap; max-width:1000px; margin:auto;">
+
+    <div style="background:#1d1d22; padding:30px; border-radius:14px; width:280px; text-align:center; box-shadow:0 0 20px rgba(255,255,255,0.05);">
+      <i class="fa-solid fa-cash-register" style="font-size:48px; color:#3b82f6; margin-bottom:20px;"></i>
+      <h3 style="font-size:22px; margin-bottom:10px;">Função Caixa</h3>
+      <p style="font-size:16px; opacity:0.85;">O totem recebe pagamentos automaticamente via <strong>PIX</strong>, <strong>cartão</strong> e <strong>QR Code</strong>, eliminando a necessidade de um operador de caixa.</p>
+    </div>
+
+    <div style="background:#1d1d22; padding:30px; border-radius:14px; width:280px; text-align:center; box-shadow:0 0 20px rgba(255,255,255,0.05);">
+      <i class="fa-solid fa-utensils" style="font-size:48px; color:#3b82f6; margin-bottom:20px;"></i>
+      <h3 style="font-size:22px; margin-bottom:10px;">Atendimento Inicial</h3>
+      <p style="font-size:16px; opacity:0.85;">O cliente faz o pedido diretamente no totem, sem precisar de garçom para anotar, reduzindo tempo e erros.</p>
+    </div>
+
+    <div style="background:#1d1d22; padding:30px; border-radius:14px; width:280px; text-align:center; box-shadow:0 0 20px rgba(255,255,255,0.05);">
+      <i class="fa-solid fa-bell-concierge" style="font-size:48px; color:#3b82f6; margin-bottom:20px;"></i>
+      <h3 style="font-size:22px; margin-bottom:10px;">Organização & Entrega</h3>
+      <p style="font-size:16px; opacity:0.85;">O sistema envia pedidos automaticamente para cozinha e copa e identifica a mesa de entrega, agilizando toda a operação.</p>
+    </div>
+
+  </div>
+
+  <p style="text-align:center; margin-top:50px; font-size:20px; opacity:0.9; max-width:800px; margin:auto;">
+    Resultado imediato: <strong>menos fila</strong>, <strong>menos funcionários</strong>, <strong>pedidos mais rápidos</strong> e <strong>economia real todos os meses</strong>.
+  </p>
+</section>
+
+<footer>
+  © 2025 Vezzo Totens — Autoatendimento Inteligente
+</footer>
 
 </body>
 </html>
