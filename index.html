@@ -1,173 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vezzo Totens — Autoatendimento Inteligente</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0b0d;
-  color: white;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #0f0f12;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #222;
-}
-header img { height: 65px; }
-
-.hero {
-  display: flex;
-  padding: 80px 40px;
-  align-items: center;
-  justify-content: space-between;
-}
-.hero-text { max-width: 600px; }
-.hero h1 {
-  font-size: 52px;
-  margin: 0 0 20px;
-  font-weight: 700;
-  color: #fff;
-}
-.hero p {
-  font-size: 20px;
-  opacity: 0.8;
-}
-.hero-img img {
-  height: 500px;
-  filter: drop-shadow(0px 0px 30px rgba(255,255,255,0.4));
-}
-.cta-button {
-  background: #3b82f6;
-  padding: 15px 30px;
-  border-radius: 8px;
-  color: #fff;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 25px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.value-prop {
-  padding: 70px 40px;
-  background: #111;
-  text-align: center;
-}
-.value-prop h2 {
-  font-size: 42px;
-  margin-bottom: 20px;
-}
-.value-prop p {
-  font-size: 22px;
-  opacity: 0.9;
-  max-width: 900px;
-  margin: auto;
-}
-
-.saving-calc {
-  padding: 70px 40px;
-  background: #16161a;
-}
-
-.saving-calc h2 { font-size: 38px; }
-.saving-calc p { font-size: 20px; opacity: 0.85; }
-
-/* ESTILO PARA A NOVA SEÇÃO (Aceitação do Público) */
-.beneficio {
-  margin: 40px auto;
-  padding: 60px 40px;
-  border-radius: 12px;
-  background: #0f0f12;
-  max-width: 1200px;
-  border: 1px solid #1d1d22;
-  color: white;
-}
-
-.titulo-beneficio {
-  font-size: 40px;
-  margin-bottom: 20px;
-  font-weight: 800;
-  text-align: center;
-}
-
-.descricao-beneficio {
-  font-size: 18px;
-  margin-bottom: 40px;
-  text-align: center;
-  opacity: 0.85;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
-
-.graficos-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.grafico-card {
-  background: #1a1a1f;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #2a2a30;
-  box-shadow: 0 0 15px rgba(255,255,255,0.04);
-}
-
-.grafico-titulo {
-  font-size: 18px;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-
-.barra {
-  width: 100%;
-  height: 18px;
-  background: #2c2c33;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.preenchimento {
-  height: 18px;
-  background: #3b82f6;
-  border-radius: 10px;
-  box-shadow: 0 0 18px rgba(59,130,246,0.4);
-}
-
-.valor {
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 5px;
-  opacity: 0.9;
-  color: #3b82f6;
-}
-footer {
-  background: #0f0f12;
-  text-align: center;
-  padding: 30px;
-  margin-top: 40px;
-  font-size: 14px;
-  opacity: 0.7;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vezzo Totens — Autoatendimento Inteligente</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #0b0b0d;
+      color: white;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #0f0f12;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #222;
+    }
+    header img {
+      height: 65px;
+    }
+    .hero {
+      display: flex;
+      padding: 80px 40px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap; /* Adiciona responsividade */
+    }
+    .hero-text {
+      max-width: 600px;
+      flex-grow: 1;
+      min-width: 300px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      margin: 0 0 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .hero p {
+      font-size: 20px;
+      opacity: 0.8;
+    }
+    .hero-img {
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .hero-img img {
+      height: auto;
+      max-height: 500px;
+      width: 100%;
+      max-width: 400px;
+      filter: drop-shadow(0px 0px 30px rgba(255,255,255,0.4));
+    }
+    .cta-button {
+      background: #3b82f6;
+      padding: 15px 30px;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .cta-button:hover {
+        background: #60a5fa;
+    }
+    .value-prop {
+      padding: 70px 40px;
+      background: #111;
+      text-align: center;
+    }
+    /* Estilos responsivos */
+    @media (max-width: 900px) {
+        .hero {
+            flex-direction: column;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h1 {
+            font-size: 40px;
+        }
+        .hero-img img {
+            max-height: 400px;
+        }
+        .value-prop h2 {
+            font-size: 36px !important;
+        }
+        .value-prop h2 span {
+             font-size: 50px !important;
+        }
+        .longterm-savings {
+             padding: 60px 20px !important;
+        }
+        .saving-calc {
+             padding: 60px 20px !important;
+        }
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
@@ -194,16 +133,19 @@ footer {
   </p>
 </section>
 
-<!-- ECONOMIA A LONGO PRAZO -->
+<!-- Seção Gráfico de Economia a Longo Prazo -->
 <section class="longterm-savings" style="padding:90px 40px; background:#0f0f12; color:white; text-align:center;">
   <h2 style="font-size:40px; margin-bottom:20px; font-weight:700;">Economia Real no Longo Prazo</h2>
   <p style="max-width:900px; margin:auto; font-size:20px; opacity:0.9; margin-bottom:60px;">
-    Funcionários geram custos contínuos: salário, encargos, férias, INSS, possíveis problemas trabalhistas e afastamentos. Já o Totem Vezzo funciona 24h por dia, sem riscos e sem custos extras — garantindo economia previsível todos os meses.
+    Funcionários geram custos contínuos: salário, encargos, férias, INSS, possíveis problemas trabalhistas e afastamentos. 
+    Já o Totem Vezzo funciona 24h por dia, sem riscos e sem custos extras — garantindo economia previsível todos os meses.
   </p>
 
+  <!-- Gráfico de Economia: Mantido sem o vídeo -->
   <div style="display:flex; justify-content:center; gap:60px; flex-wrap:wrap; max-width:1000px; margin:auto;">
+
     <!-- Funcionários -->
-    <div style="width:420px; text-align:center;">
+    <div style="width:420px; max-width:100%; text-align:center;">
       <h3 style="font-size:22px; margin-bottom:15px;">Custo de 3 Funcionários (12 meses)</h3>
       <div style="background:#1d1d22; padding:25px; border-radius:14px;">
         <div style="height:280px; display:flex; align-items:flex-end; justify-content:center;">
@@ -214,7 +156,7 @@ footer {
     </div>
 
     <!-- Totem -->
-    <div style="width:420px; text-align:center;">
+    <div style="width:420px; max-width:100%; text-align:center;">
       <h3 style="font-size:22px; margin-bottom:15px;">Custo do Totem (12 meses)</h3>
       <div style="background:#1d1d22; padding:25px; border-radius:14px;">
         <div style="height:280px; display:flex; align-items:flex-end; justify-content:center;">
@@ -223,73 +165,49 @@ footer {
         <p style="margin-top:20px; font-size:20px; font-weight:700; color:#3b82f6;">R$ 7.188 / ano*</p>
       </div>
     </div>
+
   </div>
 
-  <p style="font-size:16px; margin-top:25px; opacity:0.7;">*Valor baseado em mensalidade média.</p>
+  <p style="font-size:16px; margin-top:25px; opacity:0.7;">*Valor baseado em mensalidade média. Sem encargos, sem riscos e sem custos adicionais.</p>
 
   <h3 style="margin-top:50px; font-size:30px; font-weight:800; color:#3b82f6; text-shadow:0 0 20px rgba(59,130,246,0.6);">
     Economia estimada: R$ 100.812 por ano
   </h3>
+
 </section>
 
-<!-- NOVA SEÇÃO — ACEITAÇÃO DO PÚBLICO -->
-<section class="beneficio">
-  <h2 class="titulo-beneficio">Aceitação do Público</h2>
-
-  <p class="descricao-beneficio">
-    Muitos empresários têm dúvida se os clientes vão aderir ao autoatendimento — mas os números no Brasil já mostram o contrário.
-    O público gosta de rapidez, autonomia e tecnologia. Totens já se tornaram padrão em grandes redes e estão dominando também os pequenos negócios.
-  </p>
-
-  <div class="graficos-container">
-    <div class="grafico-card">
-      <h3 class="grafico-titulo">Preferência por atendimento rápido e autônomo</h3>
-      <div class="barra"><div class="preenchimento" style="width: 85%;"></div></div>
-      <p class="valor">85% dos consumidores</p>
-    </div>
-
-    <div class="grafico-card">
-      <h3 class="grafico-titulo">Aumento na fidelização após implantar totens</h3>
-      <div class="barra"><div class="preenchimento" style="width: 40%;"></div></div>
-      <p class="valor">Até 40% a mais</p>
-    </div>
-
-    <div class="grafico-card">
-      <h3 class="grafico-titulo">Vendas via totens em fast-food (Brasil)</h3>
-      <div class="barra"><div class="preenchimento" style="width: 70%;"></div></div>
-      <p class="valor">+70% no horário de pico</p>
-    </div>
-  </div>
-
-  <p class="descricao-beneficio">
-    Esses números comprovam: o autoatendimento não é só aceito — ele é desejado.
-    A tendência é clara: **clientes modernos preferem tecnologia**.
-    E quem adota primeiro, fideliza mais cedo e se destaca no mercado.
-  </p>
-</section>
-
-<!-- VIDEO -->
+<!-- Vídeo Demonstração (Ajustado) -->
 <section class="video-demo" style="padding:80px 40px; text-align:center; background:#0d0d0d;">
   <h2 style="font-size:36px; margin-bottom:25px;">Veja o Totem em Funcionamento</h2>
   <p style="opacity:.85; margin-bottom:40px; max-width:800px; margin:auto; font-size:20px;">
     Assista ao vídeo real mostrando como o Totem Vezzo funciona na prática: recebendo pedidos, pagamentos, enviando para cozinha e agilizando todo o atendimento.
   </p>
 
-  <video controls style="width:85%; max-width:900px; border-radius:14px; border:2px solid #222; box-shadow:0 0 35px rgba(255,255,255,0.22);">
-    <source src="Video 1 Vezzo.mp4" type="video/mp4">
-    Seu navegador não suporta vídeos.
-  </video>
+  <div style="display:flex; justify-content:center;">
+    <!-- Container ajustado para formato vertical (máx. 400px de largura) e responsivo -->
+    <div style="max-width:400px; width:100%;">
+      <iframe 
+        width="100%" 
+        height="711" 
+        src="https://www.youtube.com/embed/yYe6TYPE0ps" 
+        title="Vezzo Totens: Como Otimizar o Atendimento e Multiplicar a Eficiência do Seu Negócio." 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen 
+        style="border-radius:14px; border:2px solid #222; box-shadow:0 0 35px rgba(255,255,255,0.22);"
+      ></iframe>
+    </div>
+  </div>
 </section>
 
 <section class="saving-calc" style="padding:90px 40px; background:#16161a;">
-  <h2 style="font-size:40px; margin-bottom:40px; text-align:center; font-weight:700;">
-    Como o Totem substitui 3 funcionários
-  </h2>
+  <h2 style="font-size:40px; margin-bottom:40px; text-align:center; font-weight:700;">Como o Totem substitui 3 funcionários</h2>
 
+  <!-- Ícones FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <div style="display:flex; gap:40px; justify-content:center; flex-wrap:wrap; max-width:1000px; margin:auto;">
-
+    
     <div style="background:#1d1d22; padding:30px; border-radius:14px; width:280px; text-align:center; box-shadow:0 0 20px rgba(255,255,255,0.05);">
       <i class="fa-solid fa-cash-register" style="font-size:48px; color:#3b82f6; margin-bottom:20px;"></i>
       <h3 style="font-size:22px; margin-bottom:10px;">Função Caixa</h3>
@@ -311,7 +229,7 @@ footer {
   </div>
 
   <p style="text-align:center; margin-top:50px; font-size:20px; opacity:0.9; max-width:800px; margin:auto;">
-    Resultado imediato: <strong>menos fila</strong>, <strong>menos funcionários</strong>, <strong>pedidos mais rápidos</strong> e <strong>economia real todos os meses</strong>.
+    Resultado imediato: <strong>menos fila</strong>, <strong>menos funcionários necessários</strong>, <strong>pedidos mais rápidos</strong> e <strong>economia real todos os meses</strong>.
   </p>
 </section>
 
