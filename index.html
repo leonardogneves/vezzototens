@@ -431,11 +431,12 @@
 
     // Configura o Intersection Observer
     document.addEventListener('DOMContentLoaded', () => {
-        // Opções: a animação será acionada quando 50% da seção estiver visível
+        // CORREÇÃO PARA MOBILE: Ajustando o threshold para 0.1 (10% de visibilidade)
+        // Isso garante que a animação dispare mais facilmente em telas menores.
         const options = {
             root: null, // viewport
             rootMargin: '0px',
-            threshold: 0.5 
+            threshold: 0.1 
         };
 
         const observer = new IntersectionObserver(animateBars, options);
