@@ -5,17 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vezzo Totens — Autoatendimento Inteligente</title>
 
-  <!-- Meta Tags para Favicon e Compartilhamento de Link (OG/Twitter) -->
-  <!-- URL da Logo usada como imagem de pré-visualização e ícone da aba -->
-  <?php $logoUrl = "https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png"; ?>
-  
-  <!-- Favicon para a aba do navegador -->
-  <link rel="icon" href="<?php echo $logoUrl; ?>" type="image/png">
+  <!-- URL da Logo para Favicon e Compartilhamento -->
+  <link rel="icon" href="https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png" type="image/png">
   
   <!-- Open Graph Meta Tags (Para Facebook, WhatsApp, LinkedIn) -->
   <meta property="og:title" content="Totem Vezzo: Economize até R$ 9.000 por Mês e Otimize seu Negócio" />
   <meta property="og:description" content="Reduza custos com até 3 funcionários e aumente o faturamento com o totem de autoatendimento mais eficiente do mercado." />
-  <meta property="og:image" content="<?php echo $logoUrl; ?>" />
+  <meta property="og:image" content="https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png" />
   <meta property="og:url" content="https://landingpage.com.br/" />
   <meta property="og:type" content="website" />
   
@@ -23,9 +19,13 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Totem Vezzo: Autoatendimento Inteligente" />
   <meta name="twitter:description" content="Substitua 3 funcionários e comece a economizar R$ 9.000/mês agora." />
-  <meta name="twitter:image" content="<?php echo $logoUrl; ?>" />
+  <meta name="twitter:image" content="https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png" />
   
+  <!-- Ícones FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
+    /* Estilos Gerais */
     body {
       margin: 0;
       font-family: 'Inter', Arial, sans-serif;
@@ -52,7 +52,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 40px;
-      flex-wrap: wrap; /* Adiciona responsividade */
+      flex-wrap: wrap; 
     }
     .hero-text {
       max-width: 600px;
@@ -91,6 +91,7 @@
       font-size: 20px;
       font-weight: bold;
       transition: background 0.3s;
+      cursor: pointer; /* Adicionado para indicar que é clicável */
     }
     .cta-button:hover {
         background: #60a5fa;
@@ -101,14 +102,14 @@
       text-align: center;
     }
     
-    /* --- Estilos para a seção de Aceitação (Gráficos ajustados) --- */
+    /* --- Estilos para Gráficos --- */
     .customer-acceptance {
         padding: 90px 40px;
         background: #0f0f12;
         color: white;
         text-align: center;
     }
-    .customer-acceptance .chart-container {
+    .chart-container {
         display: flex;
         justify-content: center;
         gap: 30px; 
@@ -117,8 +118,8 @@
         margin: auto;
         align-items: flex-end;
     }
-    .customer-acceptance .chart-item {
-        flex: 1 1 280px; /* Permite 3 colunas em telas maiores (~280px de largura base) */
+    .chart-item {
+        flex: 1 1 280px; 
         min-height: 350px;
         display: flex;
         flex-direction: column;
@@ -130,24 +131,21 @@
         box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     }
     .chart-bar-area {
-      height: 200px; /* Área fixa para as barras de Aceitação */
+      height: 200px; 
       width: 100%;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       margin-bottom: 20px;
     }
-    .chart-bar {
+    .chart-bar, .cost-chart-bar {
       width: 70px;
       border-radius: 8px 8px 0 0;
-      /* Inicializa a altura da barra para 0 para a animação */
       height: 0; 
-      transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação suave */
+      transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-
-    /* Estilos para as barras de Economia Real */
     .cost-chart-bar-area {
-        height: 280px; /* Área fixa para as barras de Custo */
+        height: 280px; 
         display:flex; 
         align-items:flex-end; 
         justify-content:center;
@@ -155,17 +153,129 @@
     .cost-chart-bar {
         width:80px; 
         border-radius:8px; 
-        /* Inicializa a altura da barra para 0 para a animação */
-        height: 0; 
-        transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-
     .chart-value {
       font-size: 32px;
       font-weight: 900;
       margin: 0 0 10px;
     }
     
+    /* --- Estilos do Modal de Contato --- */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+    }
+    .modal-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+    .modal-content {
+        background: #1d1d22;
+        padding: 40px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 450px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        position: relative;
+        transform: translateY(-20px);
+        transition: transform 0.3s ease-out;
+    }
+    .modal-overlay.open .modal-content {
+        transform: translateY(0);
+    }
+    .modal-content h3 {
+        color: #3b82f6;
+        margin-top: 0;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    .modal-content p {
+        margin-bottom: 25px;
+        opacity: 0.9;
+    }
+    .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+    .modal-close:hover {
+        opacity: 1;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background: #0f0f12;
+        color: white;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+    .form-group input:focus {
+        outline: none;
+        border-color: #3b82f6;
+    }
+    .locate-button {
+        background: #1e40af;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        width: 100%;
+        margin-bottom: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .locate-button:hover {
+        background: #3b82f6;
+    }
+    .locate-button i {
+        margin-right: 8px;
+    }
+    .whatsapp-submit {
+        background: #25d366;
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        border: none;
+        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .whatsapp-submit:hover {
+        background: #128c7e;
+    }
+
     /* Estilos responsivos */
     @media (max-width: 900px) {
         .hero {
@@ -191,13 +301,12 @@
         .saving-calc {
              padding: 60px 20px !important;
         }
-        /* Ajuste para o layout dos gráficos de aceitação em mobile */
         .customer-acceptance .chart-container {
             gap: 40px;
         }
         .customer-acceptance .chart-item {
-            flex-basis: 100%; /* Ocupa largura total no mobile */
-            max-width: 350px; /* Garante que o item não seja gigante */
+            flex-basis: 100%; 
+            max-width: 350px; 
             margin: auto;
         }
     }
@@ -206,7 +315,6 @@
 <body>
 
 <header>
-  <!-- Logotipo substituída pela nova URL -->
   <img src="https://i.postimg.cc/d0J6Wgtg/Screenshot-10-(1).png" alt="Vezzo Logo" />
 </header>
 
@@ -214,14 +322,15 @@
   <div class="hero-text">
     <h1>Totem de Autoatendimento Vezzo</h1>
     <p>Reduza custos, agilize pedidos e aumente o faturamento do seu negócio com um sistema completo que substitui até <strong>3 funcionários</strong> — caixa, garçom e atendimento inicial.</p>
-    <a class="cta-button" href="#contato">Quero economizar agora</a>
+    <!-- Alterado para chamar a função JavaScript que abre o modal -->
+    <a class="cta-button" onclick="openModal();">Quero economizar agora</a>
   </div>
   <div class="hero-img">
     <img src="https://i.postimg.cc/tCHV9pdm/TOTEM-1.png" alt="Totem Vezzo" />
   </div>
 </section>
 
-<!-- Seção Economia Mensal (Agora com data-section e ID para animação de número) -->
+<!-- Seção Economia Mensal -->
 <section class="value-prop" data-section="monthly-savings" style="text-align:center; padding:90px 40px; background:#111;">
   <h2 style="font-size:48px; margin-bottom:25px; font-weight:800; line-height:1.2;">
     Economize até <span id="monthly-savings-value" data-target="9000" style="color:#3b82f6; font-size:62px; font-weight:900; text-shadow:0 0 25px rgba(59,130,246,0.5);">R$ 0</span> por mês
@@ -247,7 +356,6 @@
       <h3 style="font-size:22px; margin-bottom:15px;">Custo de 3 Funcionários (12 meses)</h3>
       <div style="background:#1d1d22; padding:25px; border-radius:14px;">
         <div class="cost-chart-bar-area">
-          <!-- height-target-value: 260px -->
           <div class="cost-chart-bar" data-target-height="260" style="background:#ef4444; box-shadow:0 0 20px rgba(239,68,68,0.4);"></div>
         </div>
         <p style="margin-top:20px; font-size:20px; font-weight:700; color:#ef4444;">R$ 108.000 / ano</p>
@@ -259,7 +367,6 @@
       <h3 style="font-size:22px; margin-bottom:15px;">Custo do Totem (12 meses)</h3>
       <div style="background:#1d1d22; padding:25px; border-radius:14px;">
         <div class="cost-chart-bar-area">
-          <!-- height-target-value: 55px -->
           <div class="cost-chart-bar" data-target-height="55" style="background:#3b82f6; box-shadow:0 0 20px rgba(59,130,246,0.4);"></div>
         </div>
         <p style="margin-top:20px; font-size:20px; font-weight:700; color:#3b82f6;">R$ 7.188 / ano*</p>
@@ -276,7 +383,7 @@
 
 </section>
 
-<!-- Vídeo Demonstração (Ajustado) -->
+<!-- Vídeo Demonstração -->
 <section class="video-demo" style="padding:80px 40px; text-align:center; background:#0d0d0d;">
   <h2 style="font-size:36px; margin-bottom:25px;">Veja o Totem em Funcionamento</h2>
   <p style="opacity:.85; margin-bottom:40px; max-width:800px; margin:auto; font-size:20px;">
@@ -284,7 +391,6 @@
   </p>
 
   <div style="display:flex; justify-content:center;">
-    <!-- Container ajustado para formato vertical (máx. 400px de largura) e responsivo -->
     <div style="max-width:400px; width:100%;">
       <iframe 
         width="100%" 
@@ -302,9 +408,6 @@
 
 <section class="saving-calc" style="padding:90px 40px; background:#16161a;">
   <h2 style="font-size:40px; margin-bottom:40px; text-align:center; font-weight:700;">Como o Totem substitui 3 funcionários</h2>
-
-  <!-- Ícones FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <div style="display:flex; gap:40px; justify-content:center; flex-wrap:wrap; max-width:1000px; margin:auto;">
     
@@ -333,9 +436,8 @@
   </p>
 </section>
 
-<!-- Seção Aceitação do Cliente (Novo formato de barras) -->
+<!-- Seção Aceitação do Cliente -->
 <section class="customer-acceptance" data-section="customer-acceptance">
-    <!-- Título abreviado conforme solicitado -->
     <h2 style="font-size: 40px; margin-bottom: 20px; font-weight: 700;">Aceitação</h2>
     <p style="max-width: 900px; margin: auto; font-size: 20px; opacity: 0.9; margin-bottom: 60px;">
         Seu cliente quer agilidade e controle. Invista no Totem Vezzo e observe as métricas de sucesso que garantem satisfação e lucro, eliminando qualquer receio de modernização.
@@ -346,7 +448,6 @@
         <!-- 1. Preferência Imediata (90%) -->
         <div class="chart-item">
             <div class="chart-bar-area">
-                <!-- data-target-height: 90% da área (200px * 0.9 = 180px) -->
                 <div class="chart-bar" data-target-height="180" style="background: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.4);"></div>
             </div>
             <p class="chart-value" style="color: #3b82f6;">90%</p>
@@ -357,7 +458,6 @@
         <!-- 2. Aumento no Valor do Pedido (+30%) -->
         <div class="chart-item">
             <div class="chart-bar-area">
-                <!-- data-target-height: 30% da área (200px * 0.3 = 60px) -->
                 <div class="chart-bar" data-target-height="60" style="background: #059669; box-shadow: 0 0 20px rgba(5,150,105,0.4);"></div>
             </div>
             <p class="chart-value" style="color: #059669;">+30%</p>
@@ -368,7 +468,6 @@
         <!-- 3. Agilidade no Atendimento (40%) -->
         <div class="chart-item">
             <div class="chart-bar-area">
-                <!-- data-target-height: 40% da área (200px * 0.4 = 80px) -->
                 <div class="chart-bar" data-target-height="80" style="background: #06b6d4; box-shadow: 0 0 20px rgba(6,182,212,0.4);"></div>
             </div>
             <p class="chart-value" style="color: #06b6d4;">40%</p>
@@ -388,11 +487,151 @@
   © 2025 Vezzo Totens — Autoatendimento Inteligente
 </footer>
 
+<!-- Modal de Contato -->
+<div id="contactModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3>Fale com um Consultor Vezzo</h3>
+        <p>Preencha seus dados para que possamos te atender de forma personalizada via WhatsApp e iniciar a sua economia.</p>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="clientName">Seu Nome Completo:</label>
+                <input type="text" id="clientName" name="clientName" required placeholder="Ex: João da Silva">
+            </div>
+
+            <div class="form-group">
+                <label for="clientLocation">Sua Cidade/Estado:</label>
+                <input type="text" id="clientLocation" name="clientLocation" required placeholder="Ex: Porto Alegre, RS" value="">
+            </div>
+
+            <button type="button" class="locate-button" onclick="getLocation()" id="locateBtn">
+                <i class="fa-solid fa-location-dot"></i> Usar Minha Localização Atual
+            </button>
+            
+            <button type="submit" class="whatsapp-submit">
+                <i class="fa-brands fa-whatsapp"></i> Enviar via WhatsApp
+            </button>
+        </form>
+    </div>
+</div>
+
+
 <script>
-    // Função principal para animar as barras e o valor
+    // Variável para armazenar a localização do WhatsApp
+    const whatsappNumber = "5551997588099"; 
+    const modal = document.getElementById('contactModal');
+    const locationInput = document.getElementById('clientLocation');
+    const locateBtn = document.getElementById('locateBtn');
+    const form = document.getElementById('contactForm');
+    
+    // Funções do Modal
+    function openModal() {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Evita a rolagem do fundo
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = ''; // Restaura a rolagem
+    }
+
+    // Geolocation API
+    function getLocation() {
+        locateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Buscando Localização...';
+        locateBtn.disabled = true;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    // Tenta usar uma API de geocodificação reversa (ex: Nominatim OpenStreetMap)
+                    // Nota: A API do Google Maps requer chave, então usamos uma alternativa pública
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`;
+                    
+                    try {
+                        const response = await fetch(url);
+                        const data = await response.json();
+
+                        let city = data.address.city || data.address.town || data.address.village || 'Desconhecida';
+                        let state = data.address.state || '';
+                        let displayLocation = city;
+
+                        if (state) {
+                            // Tenta obter a sigla do estado (Ex: Rio Grande do Sul -> RS)
+                            // Isso é um hack simples, pois a API não retorna sigla padrão. Usamos apenas o nome.
+                            displayLocation += `, ${state}`;
+                        }
+                        
+                        locationInput.value = displayLocation;
+                        locateBtn.innerHTML = '<i class="fa-solid fa-check"></i> Localização Encontrada!';
+                        locateBtn.style.backgroundColor = '#059669';
+                    } catch (error) {
+                        console.error("Erro ao obter nome da cidade:", error);
+                        locationInput.value = 'Localização não encontrada (tente digitar)';
+                        locateBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Erro ao buscar';
+                        locateBtn.style.backgroundColor = '#ef4444';
+                    } finally {
+                        locateBtn.disabled = false;
+                        setTimeout(() => {
+                           // Reseta o botão após um tempo
+                           locateBtn.innerHTML = '<i class="fa-solid fa-location-dot"></i> Usar Minha Localização Atual';
+                           locateBtn.style.backgroundColor = '#1e40af';
+                        }, 3000);
+                    }
+                },
+                (error) => {
+                    console.error("Erro na geolocalização:", error);
+                    locationInput.value = 'Permissão Negada ou Indisponível (tente digitar)';
+                    locateBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Permissão Negada';
+                    locateBtn.style.backgroundColor = '#ef4444';
+                    locateBtn.disabled = false;
+                    setTimeout(() => {
+                       locateBtn.innerHTML = '<i class="fa-solid fa-location-dot"></i> Usar Minha Localização Atual';
+                       locateBtn.style.backgroundColor = '#1e40af';
+                    }, 3000);
+                }
+            );
+        } else {
+            locationInput.value = 'Geolocalização não suportada pelo navegador.';
+            locateBtn.innerHTML = '<i class="fa-solid fa-ban"></i> Não Suportado';
+            locateBtn.style.backgroundColor = '#ef4444';
+            locateBtn.disabled = true;
+        }
+    }
+
+    // Lida com o envio do Formulário
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('clientName').value.trim();
+        const location = document.getElementById('clientLocation').value.trim();
+
+        // 1. Constrói a mensagem
+        let message = `Olá, Vezzo! Tenho uma empresa e quero economizar com o Totem de Autoatendimento.`;
+        message += `\n\n*Dados de Contato:*`;
+        message += `\n- Nome: ${name}`;
+        message += `\n- Cidade/Estado: ${location}`;
+        message += `\n\nPodemos conversar?`;
+        
+        // 2. Codifica a mensagem
+        const encodedMessage = encodeURIComponent(message);
+        
+        // 3. Redireciona para o WhatsApp
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        
+        // Fecha o modal e abre a nova janela/aba do WhatsApp
+        closeModal();
+        window.open(whatsappUrl, '_blank');
+    });
+
+
+    // --- Lógica de Animação de Gráficos (Mantida do ajuste anterior) ---
     function animateBars(entries, observer) {
         entries.forEach(entry => {
-            // Verifica se a seção está visível na tela
             if (entry.isIntersecting) {
                 const section = entry.target;
                 
@@ -401,24 +640,19 @@
                     const targetElement = section.querySelector('#monthly-savings-value');
                     const targetValue = parseInt(targetElement.getAttribute('data-target'));
                     
-                    const duration = 1500; // 1.5 segundos
+                    const duration = 1500; 
                     const startTime = performance.now();
 
                     function countUp(currentTime) {
                         const elapsedTime = currentTime - startTime;
-                        // Usa Math.min(1, ...) para garantir que o progresso não passe de 1
                         const progress = Math.min(1, elapsedTime / duration);
-                        
-                        // O valor atual arredondado para garantir que a contagem seja suave
                         const currentValue = Math.round(progress * targetValue);
                         
-                        // Formata o número para o padrão brasileiro (R$ X.XXX)
                         targetElement.innerHTML = `R$ ${currentValue.toLocaleString('pt-BR')}`;
 
                         if (progress < 1) {
                             requestAnimationFrame(countUp);
                         } else {
-                            // Garante que o valor final seja exatamente o alvo e formatado corretamente
                             targetElement.innerHTML = `R$ ${targetValue.toLocaleString('pt-BR')}`;
                         }
                     }
@@ -430,7 +664,6 @@
                 else if (section.dataset.section === 'longterm-savings') {
                     section.querySelectorAll('.cost-chart-bar').forEach(bar => {
                         const targetHeight = bar.getAttribute('data-target-height');
-                        // Aplica o estilo de altura final para iniciar a transição CSS
                         bar.style.height = `${targetHeight}px`;
                     });
                 } 
@@ -439,12 +672,10 @@
                 else if (section.dataset.section === 'customer-acceptance') {
                     section.querySelectorAll('.chart-bar').forEach(bar => {
                         const targetHeight = bar.getAttribute('data-target-height');
-                        // Aplica o estilo de altura final para iniciar a transição CSS
                         bar.style.height = `${targetHeight}px`;
                     });
                 }
 
-                // Para de observar esta seção para que a animação não se repita
                 observer.unobserve(section);
             }
         });
@@ -452,16 +683,14 @@
 
     // Configura o Intersection Observer
     document.addEventListener('DOMContentLoaded', () => {
-        // CORREÇÃO PARA MOBILE: Ajustando o threshold para 0.1 (10% de visibilidade)
         const options = {
-            root: null, // viewport
+            root: null, 
             rootMargin: '0px',
             threshold: 0.3 
         };
 
         const observer = new IntersectionObserver(animateBars, options);
 
-        // Observa as três seções
         const monthlySavingsSection = document.querySelector('.value-prop');
         const longtermSavingsSection = document.querySelector('.longterm-savings');
         const customerAcceptanceSection = document.querySelector('.customer-acceptance');
